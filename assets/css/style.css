@@ -1,0 +1,29 @@
+main {
+    display: flex;
+    justify-content: center;
+    margin-top: 1em;
+}
+
+.greetings {
+    background-image:  url(../images/archeo.jpg);
+    
+    background-size: cover;
+    width: 100%;
+    padding: 5em;
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+.greetings p {
+    font-size: 1em;
+    margin: auto;
+    padding: 0.5em;
+    text-align: center;
+    width: 20em;
+}
+.greetings h1 {
+    font-size: 2.5em;
+    margin: 0;
+    padding: 0.5em;
+    text-align: center;
+}
