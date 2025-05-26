@@ -23,6 +23,10 @@
                 Nous espérons que vous trouverez notre site informatif et inspirant.</p>
             </div>
         </div>
+        <div class="actu">
+            <h1>Actualités</h1>
+            <h2>Agenda</h2>
+        </div>
     </main>
     <?php
     require 'footer.php';
