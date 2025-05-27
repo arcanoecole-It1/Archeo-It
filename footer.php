@@ -21,10 +21,10 @@
         </div>
         <div class="div-link">
             <a class="foot-link" target="_blanc" href="https://www.facebook.com/profile.php?id=61560523441372">
-                <ion-icon name="logo-facebook"></ion-icon>
+                <ion-icon class="logo-facebook" name="logo-facebook"></ion-icon>
             </a>
             <a class="foot-link" target="_blanc" href="https://github.com/arcanoecole-It1/workspace">
-                <ion-icon name="logo-github"></ion-icon>
+                <ion-icon class="logo-github" name="logo-github"></ion-icon>
             </a>
         </div>
     </div>
