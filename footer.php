@@ -20,8 +20,12 @@
             <p>&copy; <span>Archeo-It</span> 2025. Tous droits réservés.</p>
         </div>
         <div class="div-link">
-            <a class="foot-link" target="_blanc" href="https://www.facebook.com/profile.php?id=61560523441372"><img src="assets/images/face.png" alt="Facebook"></a>
-            <a class="foot-link" target="_blanc" href="https://github.com/arcanoecole-It1/workspace"><img src="assets/images/git2.png" alt="Github"></a>
+            <a class="foot-link" target="_blanc" href="https://www.facebook.com/profile.php?id=61560523441372">
+                <ion-icon name="logo-facebook"></ion-icon>
+            </a>
+            <a class="foot-link" target="_blanc" href="https://github.com/arcanoecole-It1/workspace">
+                <ion-icon name="logo-github"></ion-icon>
+            </a>
         </div>
     </div>
 </footer>
