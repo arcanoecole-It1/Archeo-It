@@ -53,7 +53,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
             echo '<a href="logout.php"><button class="sign-out">Se déconnecter</button></a>';
         } else {
             echo '<a href="login.php"><button class="sign-in">Sign In</button></a>';
-            echo '<a href="sign.php"><button class="sign-up">Sign Up</button></a>';
+            echo '<a href="inscription.php"><button class="sign-up">Sign Up</button></a>';
         }
         ?>
         </div>
