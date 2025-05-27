@@ -1,7 +1,7 @@
 footer {
     display: flex;
     flex-direction: column;
-    background-color: #1a1a2e;
+    background-color: #d68910 ;
     color: white;
 }
 .foot-link:hover {
@@ -29,7 +29,7 @@ footer {
 }
 
 footer span {
-    Color : #666280;
+    Color : #d68910;
 }
 .footer-link {
     display: flex;

@@ -11,6 +11,7 @@
         <div class="dist">
             <h4>À propos de Archeo -It</h4>
             <p style="font-size: 1.2em;">
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
                 Archeo-It est un site dédié à l'archéologie, offrant des ressources, des articles et des outils pour les passionnés et les professionnels du domaine. Notre mission est de promouvoir la connaissance et la préservation du patrimoine archéologique à travers le monde.
             </p><br>
         </div>
