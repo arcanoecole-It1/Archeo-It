@@ -84,7 +84,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
     </body>
 </html>
- <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script src="./assets/JS/script.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
 <?php include 'footer.php'; ?>
