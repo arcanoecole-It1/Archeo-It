@@ -3,6 +3,9 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
     session_start();
 };
 ?>
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+</head>
 <header >
     <div class="navigation">
         <a style="text-decoration: none" href="index.php">
