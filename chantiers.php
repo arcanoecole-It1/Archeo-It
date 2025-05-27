@@ -12,6 +12,9 @@
 <body>
     <?php require 'header.php'; ?>
     <main class="container">
+        <div class="img-chantier">
+            <img src="./assets/images/chantier.jpeg" alt="chantier">
+        </div>
         <h1 class="text-center mb-4">Nos Chantiers de Fouilles</h1>
         <div class="row">
             <div class="col-md-4">
@@ -44,6 +47,7 @@
         </div>
     </main>
     <?php require 'footer.php'; ?>
+    <script src="./assets/JS/script.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>

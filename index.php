@@ -24,8 +24,12 @@
             </div>
         </div>
         <div class="actu">
-            <h1>Actualités</h1>
-            <h2>Agenda</h2>
+            <div>
+                <h1>Actualités</h1>
+            </div>
+            <div>
+                <h2>Agenda</h2>
+            </div>
         </div>
     </main>
     <?php
@@ -33,7 +37,6 @@
     ?>
 </body>
 </html>    
+    <script src="./assets/JS/script.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-</body>
-</html>
