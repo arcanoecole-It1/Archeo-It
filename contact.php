@@ -1,30 +1,4 @@
-<?php
-include 'database.php';
-include 'header.php';
 
-$success = '';
-$error = '';
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $last_name = htmlspecialchars(trim($_POST["last_name"]));
-    $first_name = htmlspecialchars(trim($_POST["first_name"]));
-    $email = htmlspecialchars(trim($_POST["email"]));
-    $subject = htmlspecialchars(trim($_POST["subject"]));
-    $comment = htmlspecialchars(trim($_POST["comment"]));
-
-    if (!empty($last_name) && !empty($first_name) && !empty($email) && !empty($subject) && !empty($comment)) {
-        try {
-            $stmt = $pdo->prepare("INSERT INTO contact (last_name, first_name, email, subject, comment) VALUES (?, ?, ?, ?, ?)");
-            $stmt->execute([$last_name, $first_name, $email, $subject, $comment]);
-            $success = "Message envoyé avec succès.";
-        } catch (PDOException $e) {
-            $error = "Erreur : " . $e->getMessage();
-        }
-    } else {
-        $error = "Veuillez remplir tous les champs.";
-    }
-}
-?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -33,8 +7,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title> Archeo - It Contact</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="./assets/css/header.css">
-    <link rel="stylesheet" href="./assets/css/footer.css">
     <link rel="stylesheet" href="./assets/css/contact.css">
   
 </head>
