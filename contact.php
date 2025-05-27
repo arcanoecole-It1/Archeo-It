@@ -66,5 +66,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <button type="submit" class="btn btn-primary">Envoyer</button>
     </form>
 </div>
-
-<?php include 'footer.php'; ?>
+<?php include 'footer.php'; ?

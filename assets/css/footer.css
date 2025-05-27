@@ -37,3 +37,16 @@ footer span {
     align-items: center;
     padding: 1em;
 }
+.logo-github {
+    width: 2em;
+    height: 2em;
+    margin-bottom: 0.5em;
+}
+.logo-github:hover {
+    opacity: 0.5;
+}
+.logo-facebook {
+    width: 2em;
+    height: 2em;
+    margin-bottom: 0.5em;
+}

@@ -24,3 +24,12 @@
 .container {
     margin-top: 1em;
 }
+.img-chantier {
+    margin: auto;
+    width: fit-content;
+}
+.img-chantier img {
+    width: 45em;
+    height: auto;
+    border-radius: 10px;
+}

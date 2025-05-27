@@ -12,6 +12,9 @@
 <body>
     <?php require 'header.php'; ?>
     <main class="container">
+        <div class="img-chantier">
+            <img src="./assets/images/chantier.jpeg" alt="chantier">
+        </div>
         <h1 class="text-center mb-4">Nos Chantiers de Fouilles</h1>
         <div class="row">
             <div class="col-md-4">

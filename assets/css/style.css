@@ -8,7 +8,6 @@ main {
 
 .greetings {
     background-image:  url(../images/acceuil.jpg);
-    
     background-size: cover;
     width: 100%;
     padding: 5em;
@@ -28,4 +27,10 @@ main {
     margin: 0;
     padding: 0.5em;
     text-align: center;
+}
+.actu {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
 }

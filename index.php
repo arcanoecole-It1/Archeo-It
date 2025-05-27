@@ -24,8 +24,12 @@
             </div>
         </div>
         <div class="actu">
-            <h1>Actualités</h1>
-            <h2>Agenda</h2>
+            <div>
+                <h1>Actualités</h1>
+            </div>
+            <div>
+                <h2>Agenda</h2>
+            </div>
         </div>
     </main>
     <?php
