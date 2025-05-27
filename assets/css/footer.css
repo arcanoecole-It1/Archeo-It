@@ -41,6 +41,8 @@ footer span {
     width: 2em;
     height: 2em;
     margin-bottom: 0.5em;
+    color: white;
+    transition: opacity 0.3s;
 }
 .logo-github:hover {
     opacity: 0.5;
@@ -49,4 +51,6 @@ footer span {
     width: 2em;
     height: 2em;
     margin-bottom: 0.5em;
+    color: white;
+    transition: opacity 0.3s;
 }

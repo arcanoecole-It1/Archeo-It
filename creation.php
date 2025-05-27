@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="./assets/css/header.css">
     <link rel="stylesheet" href="./assets/css/style.css">
     <link rel="stylesheet" href="./assets/css/footer.css">
+    <link rel="stylesheet" href="./assets/css/create.css">
 </head>
 <body>
     <?php require 'header.php'; ?>
@@ -20,15 +21,18 @@
             <p>
                 Cette page est réservée aux administrateurs du site. Vous pouvez créer, modifier ou supprimer des actualités, des chantiers et des comptes administrateurs.
             </p>
-            <a href="admin_create.php">
-                <div></div>
-            </a>
-            <a href="actualite_create.php">
-                <div></div>
-            </a>
-            <a href="chantier_create.php">
-                <div></div>
-            </a>
+            <div class="actions">
+                <h3>Actions disponibles :</h3>
+                <a href="admin_create.php">
+                    <div class="blocks">Crée Admins</div>
+                </a>
+                <a href="actualite_create.php">
+                    <div class="blocks">Crée Actualité</div>
+                </a>
+                <a href="chantier_create.php">
+                    <div class="blocks">Crée Chantier</div>
+                </a>
+            </div>
         </div>
     </main>
     <?php

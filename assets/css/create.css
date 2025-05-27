@@ -1,0 +1,28 @@
+.actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+    margin-bottom: 2em;
+    width: 100%;
+    height: 100%;
+}
+.actions a {
+    text-decoration: none;
+    color: #1c1d4b;
+    padding: 0.5em 1em;
+    text-align: center;
+}
+.blocks {
+    background-color: #e9eae4;
+    width: 20em;
+    padding: 2em;
+    border-radius: 10px;
+    border: 2px solid black;
+}
+.blocks:hover {
+    background-color: #1c1d4b;
+    color: white;
+    transition: background-color 0.3s ease;
+}
