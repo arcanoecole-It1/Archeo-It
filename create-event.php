@@ -1,21 +1,16 @@
 <?php
 session_start();
-
 // Vérification de connexion
 if (!isset($_SESSION['userIsLoggedIn']) || !$_SESSION['userIsLoggedIn']) {
     header("Location: login.php");
     exit;
 }
-
 // Vérification admin
 if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] != 1) {
     header("Location: index.php");
     exit;
 }
-
 include 'database.php';
-include 'header.php';
-
 $success = '';
 $error = '';
 
@@ -57,11 +52,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="./assets/css/contact.css">
 </head>
 <body>
+<?php include 'header.php'; ?>
 <div class="contact-container">
     <h2 class="text-center mb-4">
         <i class="bi bi-calendar-plus me-2"></i> CRÉER UN ÉVÉNEMENT
     </h2>
-
     <?php if ($success): ?>
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             <?= htmlspecialchars($success) ?>
@@ -75,7 +70,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
         </div>
     <?php endif; ?>
-
     <form method="POST" action="">
         <div class="mb-3">
             <label class="form-label"><i class="bi bi-type me-1"></i>Titre de l'événement :</label>
@@ -119,12 +113,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </form>
 </div>
-
+</body>
 <?php include 'footer.php'; ?>
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 <script src="./assets/JS/script.js"></script>
-</body>
 </html>

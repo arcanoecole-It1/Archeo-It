@@ -1,7 +1,5 @@
 <?php
-require 'header.php';
 require 'database.php';
-
 // Récupérer tous les chantiers depuis la base de données
 try {
     $stmt = $pdo->query("SELECT * FROM chantiers ORDER BY created_at DESC");
@@ -11,7 +9,6 @@ try {
     $chantiers = [];
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -25,6 +22,7 @@ try {
     <link rel="stylesheet" href="./assets/css/footer.css">
     <link rel="stylesheet" href="./assets/css/chantier.css">
 </head>
+<?php require 'header.php'; ?>
 <body>
 <main class="container">
     <h1 class="text-center mb-4">Nos Chantiers de Fouilles</h1>
@@ -100,9 +98,7 @@ try {
         <?php endif; ?>
     </div>
 </main>
-
 <?php require 'footer.php'; ?>
-
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 <script src="./assets/JS/script.js"></script>

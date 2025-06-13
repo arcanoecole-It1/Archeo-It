@@ -59,7 +59,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <h2 class="text-center mb-4">
         <i class="bi bi-person-badge-fill me-2"></i> CRÉER UN ADMINISTRATEUR
     </h2>
-
     <?php if ($success): ?>
         <div class="alert alert-success"><?= htmlspecialchars($success) ?></div>
     <?php endif; ?>
@@ -67,7 +66,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <?php if ($error): ?>
         <div class="alert alert-danger"><?= htmlspecialchars($error) ?></div>
     <?php endif; ?>
-
     <form method="POST" action="">
         <div class="mb-3">
             <label class="form-label"><i class="bi bi-person-fill me-1"></i>Nom :</label>
@@ -95,9 +93,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </form>
 </div>
+</body>
 <?php include 'footer.php'; ?>
 <script src="./assets/JS/script.js"></script>
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-</body>
 </html>

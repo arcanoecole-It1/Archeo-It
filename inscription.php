@@ -1,16 +1,13 @@
 <?php
 include 'database.php';
-include 'header.php';
 $success = '';
 $error = '';
 $generated_password = '';
-
 // Générer un mot de passe si demandé
 if (isset($_POST['generate_password'])) {
     $password_type = $_POST['password_type'];
     $password_length = $_POST['password_length'] ?? 12;
     $script_path = __DIR__ . '/generate_password.py';
-    
     if (file_exists($script_path)) {
         // Essayer différentes commandes Python
         $commands = [
@@ -37,7 +34,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
     $confirm_password = trim($_POST["confirm_password"]);
     $first_name = htmlspecialchars(trim($_POST["first_name"]));
     $last_name = htmlspecialchars(trim($_POST["last_name"]));
-
     if (!empty($username) && !empty($email) && !empty($password) && !empty($confirm_password) && !empty($first_name) && !empty($last_name)) {
         if ($password === $confirm_password) {
             try {
@@ -79,12 +75,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
     <link rel="stylesheet" href="./assets/css/footer.css">
     <link rel="stylesheet" href="./assets/css/contact.css">
 </head>
+<?php include 'header.php'; ?>
 <body>
 <div class="contact-container">
     <h2 class="text-center mb-4">
         <i class="bi bi-person-plus-fill me-2"></i> INSCRIPTION
     </h2>
-
     <?php if ($success): ?>
         <div class="alert alert-success"><?= htmlspecialchars($success) ?></div>
     <?php endif; ?>
@@ -119,7 +115,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
                     </label>
                 </div>
             </div>
-            
             <div class="row">
                 <div class="col-md-6">
                     <label class="form-label">Longueur du mot de passe :</label>
@@ -137,7 +132,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
                 </div>
             </div>
         </form>
-        
         <?php if (!empty($generated_password)): ?>
             <div class="mt-3">
                 <label class="form-label">Mot de passe généré :</label>
@@ -152,11 +146,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
             </div>
         <?php endif; ?>
     </div>
-
-    <!-- Formulaire d'inscription -->
     <form method="POST" action="">
         <input type="hidden" name="register" value="1">
-        
         <div class="row">
             <div class="col-md-6">
                 <div class="mb-3">
@@ -173,42 +164,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
                 </div>
             </div>
         </div>
-        
         <div class="mb-3">
             <label class="form-label"><i class="bi bi-at me-1"></i>Nom d'utilisateur :</label>
             <input type="text" name="username" class="form-control" required
                    value="<?= isset($_POST['username']) ? htmlspecialchars($_POST['username']) : '' ?>">
         </div>
-        
         <div class="mb-3">
             <label class="form-label"><i class="bi bi-envelope-fill me-1"></i>Email :</label>
             <input type="email" name="email" class="form-control" required
                    value="<?= isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '' ?>">
         </div>
-        
         <div class="mb-3">
             <label class="form-label"><i class="bi bi-lock-fill me-1"></i>Mot de passe :</label>
             <input type="password" name="password" id="password" class="form-control" required>
             <small class="form-text text-muted">Utilisez le générateur ci-dessus ou créez votre propre mot de passe</small>
         </div>
-        
         <div class="mb-3">
             <label class="form-label"><i class="bi bi-lock me-1"></i>Confirmer le mot de passe :</label>
             <input type="password" name="confirm_password" class="form-control" required>
         </div>
-        
         <button type="submit" class="btn btn-send">S'INSCRIRE</button>
-        
         <div class="text-center mt-3">
             <p>Déjà un compte ? <a href="login.php" class="text-decoration-none">Se connecter</a></p>
         </div>
     </form>
 </div>
-
 <?php include 'footer.php'; ?>
-</body>
-</html>
 <script src="./assets/JS/password.js"></script>
 <script src="./assets/JS/script.js"></script>
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+</html>

@@ -26,21 +26,17 @@ def generate_password(password_type, length=12):
     # on s'assure d'avoir au moins une majuscule et une minuscule
     password.append(random.choice(uppercase))
     password.append(random.choice(lowercase))
-    
     # Ajouter d'autres caractères selon le type
     if password_type == "2":
         password.append(random.choice(digits))
     elif password_type == "3":
         password.append(random.choice(digits))
         password.append(random.choice(special_chars))
-    
     # Compléter le reste du mot de passe
     for _ in range(length - len(password)):
         password.append(random.choice(chars))
-    
     # Mélanger le mot de passe
     random.shuffle(password)
-    
     return ''.join(password)
 
 if __name__ == "__main__":

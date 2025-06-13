@@ -1,10 +1,7 @@
 <?php
 include 'database.php';
-include 'header.php';
-
 $success = '';
 $error = '';
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $last_name = htmlspecialchars(trim($_POST["last_name"]));
     $first_name = htmlspecialchars(trim($_POST["first_name"]));
@@ -38,20 +35,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="./assets/css/contact.css">
   
 </head>
+<?php include 'header.php'; ?>
 <body>
  <div class="contact-container">
     <h2 class="text-center mb-4">
         <i class="bi bi-telephone-fill me-2"></i> CONTACTEZ NOUS
     </h2>
-
     <?php if ($success): ?>
         <div class="alert alert-success"><?= htmlspecialchars($success) ?></div>
     <?php endif; ?>
-
     <?php if ($error): ?>
         <div class="alert alert-danger"><?= htmlspecialchars($error) ?></div>
     <?php endif; ?>
-
     <form method="POST" action="contact.php">
         <div class="mb-3">
             <label class="form-label"><i class="bi bi-person-fill me-1"></i>Votre Nom :</label>
@@ -81,11 +76,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <button type="submit" class="btn btn-send">ENVOYER</button>
     </form>
 </div>
-
-    </body>
-</html>
-    <script src="./assets/JS/script.js"></script>
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-
+</body>
 <?php include 'footer.php'; ?>
+<script src="./assets/JS/script.js"></script>
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</html>

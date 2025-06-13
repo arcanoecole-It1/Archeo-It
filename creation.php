@@ -10,7 +10,6 @@ if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] != 1) {
     header("Location: index.php");
     exit;
 }
-require 'header.php';
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -26,6 +25,7 @@ require 'header.php';
     <link rel="stylesheet" href="./assets/css/creation.css">
 </head>
 <body>
+<?php require 'header.php'; ?>
     <main>
         <div class="creation-container">
             <div class="creation-header">
@@ -65,9 +65,9 @@ require 'header.php';
             </div>
         </div>
     </main>
+</body>
     <?php require 'footer.php'; ?>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="./assets/JS/script.js"></script>
-</body>
 </html>

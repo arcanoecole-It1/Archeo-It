@@ -1,7 +1,6 @@
 <?php
 session_start();
 include 'database.php';
-include 'header.php';
 $success = '';
 $error = '';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -43,41 +42,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="./assets/css/footer.css">
     <link rel="stylesheet" href="./assets/css/contact.css">
 </head>
+<?php include 'header.php'; ?>
 <body>
 <div class="contact-container">
     <h2 class="text-center mb-4">
         <i class="bi bi-box-arrow-in-right me-2"></i> CONNEXION
     </h2>
-
     <?php if ($success): ?>
         <div class="alert alert-success"><?= htmlspecialchars($success) ?></div>
     <?php endif; ?>
-
     <?php if ($error): ?>
         <div class="alert alert-danger"><?= htmlspecialchars($error) ?></div>
     <?php endif; ?>
-
     <form method="POST" action="connexion.php">
         <div class="mb-3">
             <label class="form-label"><i class="bi bi-person-fill me-1"></i>Nom d'utilisateur ou Email :</label>
             <input type="text" name="username" class="form-control" required>
         </div>
-        
         <div class="mb-3">
             <label class="form-label"><i class="bi bi-lock-fill me-1"></i>Mot de passe :</label>
             <input type="password" name="password" class="form-control" required>
         </div>
-        
         <button type="submit" class="btn btn-send">SE CONNECTER</button>
-        
         <div class="text-center mt-3">
             <p>Pas encore de compte ? <a href="inscription.php" class="text-decoration-none">S'inscrire</a></p>
         </div>
     </form>
 </div>
-<?php include 'footer.php'; ?>
 </body>
-</html>
+<?php include 'footer.php'; ?>
 <script src="./assets/JS/script.js"></script>
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</html>

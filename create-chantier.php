@@ -1,21 +1,16 @@
 <?php
 session_start();
-
 // Vérification de connexion
 if (!isset($_SESSION['userIsLoggedIn']) || !$_SESSION['userIsLoggedIn']) {
     header("Location: login.php");
     exit;
 }
-
 // Vérification admin
 if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] != 1) {
     header("Location: index.php");
     exit;
 }
-
 include 'database.php';
-include 'header.php';
-
 $success = '';
 $error = '';
 
@@ -86,57 +81,50 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="./assets/css/contact.css">
 </head>
 <body>
+<?php include 'header.php'; ?>
 <div class="contact-container">
     <h2 class="text-center mb-4">
         <i class="bi bi-geo-alt-fill me-2"></i> CRÉER UN CHANTIER
     </h2>
-
     <?php if ($success): ?>
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             <?= htmlspecialchars($success) ?>
             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
         </div>
     <?php endif; ?>
-
     <?php if ($error): ?>
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
             <?= htmlspecialchars($error) ?>
             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
         </div>
     <?php endif; ?>
-
     <form method="POST" action="" enctype="multipart/form-data">
         <div class="mb-3">
             <label class="form-label"><i class="bi bi-building me-1"></i>Nom du chantier :</label>
             <input type="text" name="nom" class="form-control" required 
                    value="<?= isset($nom) ? htmlspecialchars($nom) : '' ?>">
         </div>
-        
         <div class="mb-3">
             <label class="form-label"><i class="bi bi-text-paragraph me-1"></i>Description :</label>
             <textarea name="description" class="form-control" rows="4" required><?= isset($description) ? htmlspecialchars($description) : '' ?></textarea>
         </div>
-        
         <div class="mb-3">
             <label class="form-label"><i class="bi bi-pin-map-fill me-1"></i>Localisation :</label>
             <input type="text" name="localisation" class="form-control" placeholder="Ex: Carnac, Bretagne" required
                    value="<?= isset($localisation) ? htmlspecialchars($localisation) : '' ?>">
         </div>
-        
         <div class="row">
             <div class="col-md-6 mb-3">
                 <label class="form-label"><i class="bi bi-calendar-event me-1"></i>Date de début :</label>
                 <input type="date" name="date_debut" class="form-control" required
                        value="<?= isset($date_debut) ? $date_debut : '' ?>">
             </div>
-            
             <div class="col-md-6 mb-3">
                 <label class="form-label"><i class="bi bi-calendar-check me-1"></i>Date de fin (optionnel) :</label>
                 <input type="date" name="date_fin" class="form-control"
                        value="<?= isset($date_fin) ? $date_fin : '' ?>">
             </div>
         </div>
-        
         <div class="mb-3">
             <label class="form-label"><i class="bi bi-flag-fill me-1"></i>Statut :</label>
             <select name="statut" class="form-control" required>
@@ -162,12 +150,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </form>
 </div>
-
+</body>
 <?php include 'footer.php'; ?>
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 <script src="./assets/JS/script.js"></script>
-</body>
 </html>
