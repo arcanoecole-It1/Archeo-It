@@ -65,7 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="alert alert-danger"><?= htmlspecialchars($error) ?></div>
     <?php endif; ?>
 
-    <form method="POST" action="login.php">
+    <form method="POST" action="connexion.php">
         <div class="mb-3">
             <label class="form-label"><i class="bi bi-person-fill me-1"></i>Nom d'utilisateur ou Email :</label>
             <input type="text" name="username" class="form-control" required>
