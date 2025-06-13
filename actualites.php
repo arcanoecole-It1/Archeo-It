@@ -2,13 +2,15 @@
 require 'database.php';
 session_start();
 // Vérification de la session pour savoir si l'utilisateur est connecté
-$estConnecte = isset($_SESSION['userIsLoggedIn']) && $_SESSION['userIsLoggedIn']
-// Requête pour récupérer les actualités
+$estConnecte = isset($_SESSION['userIsLoggedIn']) && $_SESSION['userIsLoggedIn'];
+// Si l'utilisateur est connecté, on affiche toutes les actualités
 $limit = $estConnecte ? null : 3; // Limite à 3 si non connecté
-$query = "SELECT * FROM actualites ORDER BY date_creation DESC";
+
+$query = "SELECT * FROM actualites  ORDER BY date_creation DESC";
 if ($limit !== null) {
     $query .= " LIMIT $limit";
 }
+
 $stmt = $pdo->prepare($query);
 $stmt->execute();
 $actualites = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -26,11 +28,12 @@ $actualites = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <link rel="stylesheet" href="./assets/css/footer.css">
     <link rel="stylesheet" href="./assets/css/create.css">
 </head>
-<?php require 'header.php'; ?>
 <body>
+    <?php require 'header.php'; ?>
 <main>
     <div class="container py-5">
         <h1 class="mb-4"><?= $estConnecte ? 'Toutes les Actualités' : 'Dernières Actualités' ?></h1>
+        
         <?php if (empty($actualites)): ?>
             <p class="text-center">Aucune actualité disponible pour le moment.</p>
         <?php else: ?>
@@ -56,9 +59,9 @@ $actualites = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <?php endif; ?>
     </div>
 </main>
-</body>
 <?php require 'footer.php'; ?>
-<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-<script src="./assets/JS/script.js"></script>
+</body>
 </html>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="./assets/JS/script.js"></script>
