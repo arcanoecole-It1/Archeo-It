@@ -2,37 +2,29 @@
 session_start();
 include 'database.php';
 include 'header.php';
-
 $success = '';
 $error = '';
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = htmlspecialchars(trim($_POST["username"]));
     $password = trim($_POST["password"]);
-
     if (!empty($username) && !empty($password)) {
         try {
-            // Rechercher l'utilisateur
-            $stmt = $pdo->prepare("SELECT id, username, password, first_name, last_name, is_admin FROM users WHERE username = ? OR email = ?");
+            $stmt = $pdo->prepare("SELECT id, username,password, is_admin FROM users WHERE username = ? OR email = ?");
             $stmt->execute([$username, $username]);
             $user = $stmt->fetch();
-
             if ($user && password_verify($password, $user['password'])) {
-                // Connexion réussie
+                // Connexion réussie - Stocker TOUTES les infos dans la session
                 $_SESSION['userIsLoggedIn'] = true;
                 $_SESSION['user_id'] = $user['id'];
                 $_SESSION['username'] = $user['username'];
-                $_SESSION['first_name'] = $user['first_name'];
-                $_SESSION['last_name'] = $user['last_name'];
-                $_SESSION['is_admin'] = $user['is_admin'];
-                
+                $_SESSION['is_admin'] = $user['is_admin']; 
                 header("Location: index.php");
                 exit;
             } else {
                 $error = "Nom d'utilisateur ou mot de passe incorrect.";
             }
         } catch (PDOException $e) {
-            $error = "Erreur : " . $e->getMessage();
+            $error = "Erreur de connexion. Veuillez réessayer.";
         }
     } else {
         $error = "Veuillez remplir tous les champs.";
@@ -83,9 +75,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </form>
 </div>
-<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<?php include 'footer.php'; ?>
 </body>
 </html>
 <script src="./assets/JS/script.js"></script>
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-<?php include 'footer.php'; ?>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>

@@ -1,36 +1,157 @@
-main {
+body {
+    margin: 0;
+    padding: 0;
+}
+.image-banner {
+    background-image: url('../images/archeo.jpg'); 
+    background-size: cover;
+    background-position: center;
+    height: 100vh; 
     display: flex;
-    justify-content: center;
-    margin-top: 1em;
-    flex-direction: column;
     align-items: center;
+    justify-content: center;
+    position: relative;
+    text-align: center;
 }
 
-.greetings {
-    background-image:  url(../images/acceuil.jpg);
-    background-size: cover;
+.image-banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    padding: 5em;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.banner-content {
+    position: relative; 
+    z-index: 1; 
+    max-width: 800px;
+    padding: 20px;
+}
+
+.banner-content h1 {
+    font-size: 3.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.banner-content p {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.banner-content .btn {
+    font-size: 1.2rem;
+    padding: 15px 30px;
+    border-radius: 30px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.banner-content .btn:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+.content-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    min-height: 50vh;
+}
+        
+.actualites-section {
+    background: #f8f9fa;
+    padding: 3rem;
+    border-right: 2px solid #e0e0e0;
+}
+.agenda-section {
+    background: #ffffff;
+    padding: 3rem;
+}
+        
+.actualite-card {
+    background: white;
+    border-left: 4px solid #2196f3;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+}
+.actualite-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}   
+.agenda-item {
+    background: #f8f9fa;
+    padding: 1.2rem;
+    margin-bottom: 1.2rem;
+    border-radius: 8px;
+    border-left: 4px solid #4caf50;
+    transition: all 0.3s;
+}
+.agenda-item:hover {
+    background: #e3f2fd;
+    transform: translateX(5px);
+}
+.agenda-date {
+    background: #2196f3;
     color: white;
-    display: flex;
-    flex-direction: column;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    display: inline-block;
 }
-.greetings p {
-    font-size: 1em;
-    margin: auto;
-    padding: 0.5em;
-    text-align: center;
-    width: 20em;
+.comment-section {
+    background: #1976d2;
+    color: white;
+    padding: 4rem 2rem;
 }
-.greetings h1 {
-    font-size: 2.5em;
-    margin: 0;
-    padding: 0.5em;
-    text-align: center;
+.comment-form {
+    max-width: 800px;
+    margin: 0 auto;
+} 
+.comment-form .form-control,
+.comment-form .form-select {
+    background: rgba(255,255,255,0.9);
+    border: none;
+    padding: 0.8rem;
 }
-.actu {
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    flex-direction: row;
+.btn-comment {
+    background: white;
+    color: #1976d2;
+    border: none;
+    padding: 0.8rem 2rem;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+.btn-comment:hover {
+    background: #f0f0f0;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+        
+@media (max-width: 768px) {
+    .content-wrapper {
+        grid-template-columns: 1fr;
+    }
+    .actualites-section {
+        border-right: none;
+        border-bottom: 2px solid #e0e0e0;
+    }
+}
+@media (max-width: 768px) {
+    .banner-content h1 {
+        font-size: 2.5rem;
+    }
+    .banner-content p {
+        font-size: 1.2rem;
+    }
+    .banner-content .btn {
+        font-size: 1rem;
+        padding: 10px 20px;
+    }
 }

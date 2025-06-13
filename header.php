@@ -1,9 +1,11 @@
 <?php
 if (session_status() !== PHP_SESSION_ACTIVE) {
-    session_start();}
-// Inclure le fichier de connexion à la base de données
-require 'database.php';
+    session_start();
+}
+// Connexion à la base de données
+include 'database.php';
 ?>
+
 <head>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 </head>
@@ -45,11 +47,8 @@ require 'database.php';
                     <span class="title">Contact</span>
                 </a>
             </li>
-
-            <!-- Onglet Création (visible uniquement si admin) -->
             <?php if (isset($_SESSION['userIsLoggedIn']) && $_SESSION['userIsLoggedIn'] && $pdo): ?>
                 <?php
-                // Récupère les infos utilisateur depuis la BDD
                 $stmt = $pdo->prepare("SELECT is_admin FROM users WHERE id = ?");
                 $stmt->execute([$_SESSION['user_id']]);
                 $user = $stmt->fetch();
@@ -71,7 +70,7 @@ require 'database.php';
         // Verifie si l'utilisateur est connecter et actualisé le header en fonction
         if (isset($_SESSION['userIsLoggedIn']) && $_SESSION['userIsLoggedIn']) {
             echo '<span class="user"><ion-icon class="profile" name="person-circle-outline"></ion-icon>' . htmlspecialchars($_SESSION['username']) .'</span>';
-            echo '<a href="logout.php"><button class="sign-out">Se déconnecter</button></a>';
+            echo '<a href="deconnexion.php"><button class="sign-out">Se déconnecter</button></a>';
         } else {
             echo '<a href="connexion.php"><button class="sign-in">Sign In</button></a>';
             echo '<a href="inscription.php"><button class="sign-up">Sign Up</button></a>';

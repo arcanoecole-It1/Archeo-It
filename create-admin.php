@@ -1,15 +1,18 @@
 <?php
 session_start();
-include 'database.php';
-include 'header.php';
+// Vérification de connexion
+if (!isset($_SESSION['userIsLoggedIn']) || !$_SESSION['userIsLoggedIn']) {
+    header("Location: login.php");
+    exit;
+}
 // Vérification admin
-if (!isset($_SESSION['userIsLoggedIn']) || !$_SESSION['is_admin'] != 1) {
+if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] != 1) {
     header("Location: index.php");
     exit;
 }
+include 'database.php';
 $success = '';
 $error = '';
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = htmlspecialchars(trim($_POST["username"]));
     $email = htmlspecialchars(trim($_POST["email"]));
@@ -45,13 +48,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Archeo - It Création Admin</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./assets/css/header.css">
     <link rel="stylesheet" href="./assets/css/footer.css">
     <link rel="stylesheet" href="./assets/css/contact.css">
 </head>
 <body>
+<?php include 'header.php'; ?>
 <div class="contact-container">
     <h2 class="text-center mb-4">
         <i class="bi bi-person-badge-fill me-2"></i> CRÉER UN ADMINISTRATEUR
@@ -65,7 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="alert alert-danger"><?= htmlspecialchars($error) ?></div>
     <?php endif; ?>
 
-    <form method="POST" action="create-admin.php">
+    <form method="POST" action="">
         <div class="mb-3">
             <label class="form-label"><i class="bi bi-person-fill me-1"></i>Nom :</label>
             <input type="text" name="last_name" class="form-control" required>
@@ -87,11 +90,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <input type="password" name="password" class="form-control" required>
         </div>
         <button type="submit" class="btn btn-send">CRÉER L'ADMIN</button>
+        <div class="text-center mt-3">
+            <a href="creation.php" class="text-decoration-none">← Retour au panneau d'administration</a>
+        </div>
     </form>
 </div>
 <?php include 'footer.php'; ?>
-</body>
-</html>
 <script src="./assets/JS/script.js"></script>
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+</html>

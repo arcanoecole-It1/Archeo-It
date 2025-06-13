@@ -7,3 +7,7 @@ navLinks.forEach(link => {
         link.closest('.list').classList.add('act');
     }
 });
+function showLoginMessage() {
+    var loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
+    loginModal.show();
+}
