@@ -1,71 +1,21 @@
-/* Conteneur de la page d'inscription */
-.register-container {
-    max-width: 550px;
-    margin: 60px auto;
-    padding: 40px 30px;
-    background: #ffffff;
+.password-generator {
+    background-color: #f8f9fa;
+    padding: 1.5rem;
     border-radius: 10px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    margin-bottom: 1.5rem;
+    border: 1px solid #dee2e6;
 }
-
-/* Titre */
-.register-container h2 {
-    font-weight: bold;
-    color: #333;
-    text-align: center;
-    text-transform: uppercase;
+.password-display {
+    font-family: monospace;
+    font-size: 1.1rem;
     letter-spacing: 1px;
 }
-
-/* Champs du formulaire */
-.register-container .form-control {
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    padding: 10px;
-    font-size: 1rem;
-    transition: 0.3s ease;
+.btn-generate {
+    background-color: #0d6efd;
+    color: white;
+     border: none;
 }
-
-/* Focus sur les champs */
-.register-container .form-control:focus {
-    border-color: #a67c52;
-    box-shadow: 0 0 5px rgba(166, 124, 82, 0.5);
-}
-
-/* Labels */
-.register-container label {
-    font-weight: 500;
-    color: #444;
-}
-
-/* Bouton d'envoi */
-.btn-register {
-    width: 100%;
-    padding: 12px;
-    background-color: #a67c52;
-    color: #fff;
-    border: none;
-    font-weight: bold;
-    border-radius: 6px;
-    transition: background-color 0.3s ease;
-}
-
-.btn-register:hover {
-    background-color: #8c6239;
-}
-
-/* Message centré en dessous */
-.register-container .text-center a {
-    color: #a67c52;
-    text-decoration: none;
-}
-
-.register-container .text-center a:hover {
-    text-decoration: underline;
-}
-
-/* Alertes */
-.register-container .alert {
-    text-align: center;
-    margin-top: 20px;
+.btn-generate:hover {
+    background-color: #0b5ed7;
+    color: white;
 }

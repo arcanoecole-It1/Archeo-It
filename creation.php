@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,13 +24,13 @@
             </p>
             <div class="actions">
                 <h3>Actions disponibles :</h3>
-                <a href="admin_create.php">
+                <a href="admin-create.php">
                     <div class="blocks">Crée Admins</div>
                 </a>
-                <a href="actualite_create.php">
+                <a href="create-actualite.php">
                     <div class="blocks">Crée Actualité</div>
                 </a>
-                <a href="chantier_create.php">
+                <a href="create-chantier.php">
                     <div class="blocks">Crée Chantier</div>
                 </a>
             </div>

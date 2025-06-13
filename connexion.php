@@ -1,57 +1,91 @@
 <?php
 session_start();
-require_once 'database.php';
+include 'database.php';
+include 'header.php';
 
-$message = '';
+$success = '';
+$error = '';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = htmlspecialchars(trim($_POST["email"]));
+    $username = htmlspecialchars(trim($_POST["username"]));
     $password = trim($_POST["password"]);
 
-    if (!empty($email) && !empty($password)) {
-        $stmt = $pdo->prepare("SELECT * FROM users WHERE email = ?");
-        $stmt->execute([$email]);
-        $user = $stmt->fetch();
+    if (!empty($username) && !empty($password)) {
+        try {
+            // Rechercher l'utilisateur
+            $stmt = $pdo->prepare("SELECT id, username, password, first_name, last_name, is_admin FROM users WHERE username = ? OR email = ?");
+            $stmt->execute([$username, $username]);
+            $user = $stmt->fetch();
 
-        if ($user && password_verify($password, $user['password'])) {
-            // Connexion réussie
-            $_SESSION['user_id'] = $user['id'];
-            $_SESSION['username'] = $user['username'];
-            $_SESSION['is_admin'] = $user['is_admin'];
-
-            header("Location: index.php");
-            exit();
-        } else {
-            $message = "Identifiants incorrects.";
+            if ($user && password_verify($password, $user['password'])) {
+                // Connexion réussie
+                $_SESSION['userIsLoggedIn'] = true;
+                $_SESSION['user_id'] = $user['id'];
+                $_SESSION['username'] = $user['username'];
+                $_SESSION['first_name'] = $user['first_name'];
+                $_SESSION['last_name'] = $user['last_name'];
+                $_SESSION['is_admin'] = $user['is_admin'];
+                
+                header("Location: index.php");
+                exit;
+            } else {
+                $error = "Nom d'utilisateur ou mot de passe incorrect.";
+            }
+        } catch (PDOException $e) {
+            $error = "Erreur : " . $e->getMessage();
         }
     } else {
-        $message = "Veuillez remplir tous les champs.";
+        $error = "Veuillez remplir tous les champs.";
     }
 }
 ?>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Archeo - It Connexion</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./assets/css/header.css">
+    <link rel="stylesheet" href="./assets/css/footer.css">
+    <link rel="stylesheet" href="./assets/css/contact.css">
+</head>
+<body>
+<div class="contact-container">
+    <h2 class="text-center mb-4">
+        <i class="bi bi-box-arrow-in-right me-2"></i> CONNEXION
+    </h2>
 
-<?php include 'header.php'; ?>
-
-<div class="container mt-5">
-    <h2>Connexion</h2>
-
-    <?php if ($message): ?>
-        <div class="alert alert-danger"><?= $message ?></div>
+    <?php if ($success): ?>
+        <div class="alert alert-success"><?= htmlspecialchars($success) ?></div>
     <?php endif; ?>
 
-    <form method="POST" action="connexion.php">
-        <div class="form-group mb-3">
-            <label>Email :</label>
-            <input type="email" name="email" class="form-control" required>
-        </div>
+    <?php if ($error): ?>
+        <div class="alert alert-danger"><?= htmlspecialchars($error) ?></div>
+    <?php endif; ?>
 
-        <div class="form-group mb-3">
-            <label>Mot de passe :</label>
+    <form method="POST" action="login.php">
+        <div class="mb-3">
+            <label class="form-label"><i class="bi bi-person-fill me-1"></i>Nom d'utilisateur ou Email :</label>
+            <input type="text" name="username" class="form-control" required>
+        </div>
+        
+        <div class="mb-3">
+            <label class="form-label"><i class="bi bi-lock-fill me-1"></i>Mot de passe :</label>
             <input type="password" name="password" class="form-control" required>
         </div>
-
-        <button type="submit" class="btn btn-primary">Se connecter</button>
+        
+        <button type="submit" class="btn btn-send">SE CONNECTER</button>
+        
+        <div class="text-center mt-3">
+            <p>Pas encore de compte ? <a href="inscription.php" class="text-decoration-none">S'inscrire</a></p>
+        </div>
     </form>
 </div>
-
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
+<script src="./assets/JS/script.js"></script>
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <?php include 'footer.php'; ?>
