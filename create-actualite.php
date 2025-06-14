@@ -67,11 +67,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Archeo - It Création Actualité</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./assets/css/header.css">
+    <link rel="stylesheet" href="./assets/css/respoheader.css">
     <link rel="stylesheet" href="./assets/css/footer.css">
     <link rel="stylesheet" href="./assets/css/contact.css">
 </head>
 <body>
 <?php include 'header.php'; ?>
+<?php include 'respoheader.php'; ?>
 <div class="contact-container">
     <h2 class="text-center mb-4">
         <i class="bi bi-newspaper me-2"></i> CRÉER UNE ACTUALITÉ

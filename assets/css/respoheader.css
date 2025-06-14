@@ -1,0 +1,29 @@
+#responsive {
+    display: none;
+}
+.user-tab {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    justify-content: center;
+    align-items: center;
+}
+.user {
+    text-transform: uppercase;
+}
+.nav-link.active {
+    font-weight: bold;
+}
+@media all and (max-width: 899px) {
+    #responsive {
+        padding: 1em;
+        display: flex;
+        margin-bottom: 2em;
+    }
+    .nav-title {
+        -webkit-box-reflect: below 0px linear-gradient(transparent, #0004);
+    }
+    body {
+        margin-top: 5em !important;
+    }
+}

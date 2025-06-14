@@ -29,10 +29,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit_comment'])) {
     <title>Archeo - It site d'archéologie</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./assets/css/header.css">
+    <link rel="stylesheet" href="./assets/css/respoheader.css">
     <link rel="stylesheet" href="./assets/css/footer.css">
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 <?php include 'header.php'; ?>
+<?php include 'respoheader.php'; ?>
 <body>
     <section class="welcome-section">
         <div class="welcome-overlay"></div>

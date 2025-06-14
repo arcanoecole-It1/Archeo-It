@@ -54,3 +54,19 @@ footer span {
     color: white;
     transition: opacity 0.3s;
 }
+@media all and (max-width: 599px) {
+    .container-footer {
+        flex-direction: column;
+        align-items: center;
+    }
+    .copyright {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+@media all and (max-width: 423px) {
+    .copyright p{
+        text-align: center;
+        font-size: 1.2em;
+    }
+}
