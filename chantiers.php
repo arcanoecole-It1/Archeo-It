@@ -1,55 +1,61 @@
 <?php
 require 'database.php';
+
 // Vérifier si la table est vide
 $stmt = $pdo->query("SELECT COUNT(*) FROM chantiers");
 $count = $stmt->fetchColumn();
 
-if ($count == 0) { // S’il n’y a aucun chantier enregistré, on en ajoute
+if ($count == 0) {
     try {
-        $stmt = $pdo->prepare("INSERT INTO chantiers (nom, description, image, localisation, date_debut, date_fin, statut) VALUES
-            ('Fouilles Romaines', 'Exploration des ruines d\'une ancienne cité romaine.', './assets/images/acceuil.jpg', 'Italie', '2025-06-01', '2025-07-30', 'actif'),
+        $stmt = $pdo->prepare("
+            INSERT INTO chantiers (nom, description, image, localisation, date_debut, date_fin, statut) VALUES
+            ('Fouilles Romaines', 'Exploration des ruines d\'une ancienne cité romaine.', './assets/images/archeo.jpg', 'Italie', '2025-06-01', '2025-07-30', 'actif'),
             ('Site Médiéval', 'Recherche archéologique sur un château fort médiéval.', './assets/images/medieval.jpg', 'France', '2025-07-15', '2025-08-15', 'planifie'),
             ('Pyramide Perdue', 'Découverte d\'une pyramide inconnue en Amérique du Sud.', './assets/images/pyramide.jpg', 'Pérou', '2025-05-10', '2025-06-20', 'termine')
         ");
         $stmt->execute();
+        echo "<div class='alert alert-success text-center'>Les chantiers ont été insérés automatiquement.</div>";
     } catch (PDOException $e) {
         echo "<div class='alert alert-danger' role='alert'>Erreur lors de l'ajout des chantiers : " . $e->getMessage() . "</div>";
     }
 }
 
-// Récupérer tous les chantiers depuis la base de données
+// Récupérer tous les chantiers (triés par ID décroissant)
 try {
-    $stmt = $pdo->query("SELECT * FROM chantiers ORDER BY created_at DESC");
+    $stmt = $pdo->query("SELECT * FROM chantiers ORDER BY id DESC");
     $chantiers = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
     echo "<div class='alert alert-danger' role='alert'>Erreur lors de la récupération des chantiers.</div>";
     $chantiers = [];
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chantiers de Fouilles</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="./assets/css/header.css">
     <link rel="stylesheet" href="./assets/css/respoheader.css">
     <link rel="stylesheet" href="./assets/css/style.css">
     <link rel="stylesheet" href="./assets/css/footer.css">
     <link rel="stylesheet" href="./assets/css/chantier.css">
 </head>
+
 <?php require 'header.php'; ?>
 <?php include 'respoheader.php'; ?>
+
 <body>
 <main class="container">
     <h1 class="text-center mb-4">Nos Chantiers de Fouilles</h1>
-    <div class="row">
+    <div class="row justify-content-center">
         <?php if (!empty($chantiers)): ?>
             <?php foreach ($chantiers as $chantier): ?>
-                <div class="card-chantier">
-                    <div class="card">
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
                         <?php if (!empty($chantier['image'])): ?>
                             <img src="<?= htmlspecialchars($chantier['image']) ?>" class="card-img-top" alt="<?= htmlspecialchars($chantier['nom']) ?>">
                         <?php else: ?>
@@ -58,31 +64,27 @@ try {
                         <div class="card-body">
                             <h5 class="card-title"><?= htmlspecialchars($chantier['nom']) ?></h5>
                             <p class="card-text"><?= htmlspecialchars($chantier['description']) ?></p>
-                            
+
                             <?php if (!empty($chantier['localisation'])): ?>
                                 <p class="text-muted">
-                                    <small>
-                                        <ion-icon name="location-outline"></ion-icon> 
-                                        <?= htmlspecialchars($chantier['localisation']) ?>
-                                    </small>
+                                    <ion-icon name="location-outline"></ion-icon>
+                                    <?= htmlspecialchars($chantier['localisation']) ?>
                                 </p>
                             <?php endif; ?>
-                            
+
                             <?php if (!empty($chantier['date_debut'])): ?>
                                 <p class="text-muted">
-                                    <small>
-                                        <ion-icon name="calendar-outline"></ion-icon> 
-                                        Début : <?= date('d/m/Y', strtotime($chantier['date_debut'])) ?>
-                                        <?php if (!empty($chantier['date_fin'])): ?>
-                                            - Fin : <?= date('d/m/Y', strtotime($chantier['date_fin'])) ?>
-                                        <?php endif; ?>
-                                    </small>
+                                    <ion-icon name="calendar-outline"></ion-icon>
+                                    Début : <?= date('d/m/Y', strtotime($chantier['date_debut'])) ?>
+                                    <?php if (!empty($chantier['date_fin'])): ?>
+                                        - Fin : <?= date('d/m/Y', strtotime($chantier['date_fin'])) ?>
+                                    <?php endif; ?>
                                 </p>
                             <?php endif; ?>
-                            
+
                             <span class="badge 
                                 <?php 
-                                    switch($chantier['statut']) {
+                                    switch ($chantier['statut']) {
                                         case 'actif': echo 'bg-success'; break;
                                         case 'planifie': echo 'bg-warning'; break;
                                         case 'termine': echo 'bg-secondary'; break;
@@ -102,7 +104,7 @@ try {
                     <p>Il n'y a actuellement aucun chantier de fouilles disponible.</p>
                     <?php if (isset($_SESSION['userIsLoggedIn']) && $_SESSION['userIsLoggedIn']): ?>
                         <?php
-                        // Vérifier si l'utilisateur est admin pour afficher le lien de création
+                        // Vérifier si l'utilisateur est admin
                         $stmt = $pdo->prepare("SELECT is_admin FROM users WHERE id = ?");
                         $stmt->execute([$_SESSION['user_id']]);
                         $user = $stmt->fetch();
@@ -117,6 +119,7 @@ try {
         <?php endif; ?>
     </div>
 </main>
+
 <?php require 'footer.php'; ?>
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
