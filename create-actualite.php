@@ -32,7 +32,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (in_array($file_extension, $allowed_extensions)) {
                 $new_filename = 'actualite_' . uniqid() . '.' . $file_extension;
                 $target_file = $target_dir . $new_filename;
-                
+                $uploadDir = 'uploads/';
+                if (!is_dir($uploadDir)) {
+                    mkdir($uploadDir, 0777, true);
+                }
                 if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
                     $image_path = $target_file;
                 } else {
@@ -73,7 +76,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
 <?php include 'header.php'; ?>
-<?php include 'respoheader.php'; ?>
 <div class="contact-container">
     <h2 class="text-center mb-4">
         <i class="bi bi-newspaper me-2"></i> CRÉER UNE ACTUALITÉ

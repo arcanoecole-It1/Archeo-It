@@ -1,0 +1,37 @@
+ .description-container {
+    position: relative;
+}
+        
+.description-text {
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    max-height: 3.6em; 
+    line-height: 1.2em;
+}
+        
+.description-text.expanded {
+    max-height: none;
+}
+        
+.btn-lire-plus {
+    display: block;
+    margin-top: 10px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: #007bff;
+    text-decoration: underline;
+    padding: 0;
+    font-size: 0.9em;
+    text-align: left;
+}
+        
+.btn-lire-plus:hover {
+    color: #0056b3;
+}
+.debug-info {
+    font-size: 0.8em;
+    color: #6c757d;
+    margin-top: 5px;
+    word-break: break-all; 
+}
