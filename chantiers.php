@@ -1,5 +1,22 @@
 <?php
 require 'database.php';
+// Vérifier si la table est vide
+$stmt = $pdo->query("SELECT COUNT(*) FROM chantiers");
+$count = $stmt->fetchColumn();
+
+if ($count == 0) { // S’il n’y a aucun chantier enregistré, on en ajoute
+    try {
+        $stmt = $pdo->prepare("INSERT INTO chantiers (nom, description, image, localisation, date_debut, date_fin, statut) VALUES
+            ('Fouilles Romaines', 'Exploration des ruines d\'une ancienne cité romaine.', './assets/images/acceuil.jpg', 'Italie', '2025-06-01', '2025-07-30', 'actif'),
+            ('Site Médiéval', 'Recherche archéologique sur un château fort médiéval.', './assets/images/medieval.jpg', 'France', '2025-07-15', '2025-08-15', 'planifie'),
+            ('Pyramide Perdue', 'Découverte d\'une pyramide inconnue en Amérique du Sud.', './assets/images/pyramide.jpg', 'Pérou', '2025-05-10', '2025-06-20', 'termine')
+        ");
+        $stmt->execute();
+    } catch (PDOException $e) {
+        echo "<div class='alert alert-danger' role='alert'>Erreur lors de l'ajout des chantiers : " . $e->getMessage() . "</div>";
+    }
+}
+
 // Récupérer tous les chantiers depuis la base de données
 try {
     $stmt = $pdo->query("SELECT * FROM chantiers ORDER BY created_at DESC");
@@ -36,7 +53,7 @@ try {
                         <?php if (!empty($chantier['image'])): ?>
                             <img src="<?= htmlspecialchars($chantier['image']) ?>" class="card-img-top" alt="<?= htmlspecialchars($chantier['nom']) ?>">
                         <?php else: ?>
-                            <img src="./assets/images/default-chantier.jpg" class="card-img-top" alt="Image par défaut">
+                            <img src="./assets/images/gergovie.jpg" class="card-img-top" alt="Image par défaut">
                         <?php endif; ?>
                         <div class="card-body">
                             <h5 class="card-title"><?= htmlspecialchars($chantier['nom']) ?></h5>
