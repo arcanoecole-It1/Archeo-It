@@ -9,7 +9,7 @@ if ($count == 0) {
     try {
         $stmt = $pdo->prepare("
             INSERT INTO chantiers (nom, description, image, localisation, date_debut, date_fin, statut) VALUES
-            ('Fouilles Romaines', 'Exploration des ruines d\'une ancienne cité romaine.', './assets/images/archeo.jpg', 'Italie', '2025-06-01', '2025-07-30', 'actif'),
+            ('Fouilles Romaines', 'Exploration des ruines d\'une ancienne cité romaine.', './assets/images/italie.jpg', 'Italie', '2025-06-01', '2025-07-30', 'actif'),
             ('Site Médiéval', 'Recherche archéologique sur un château fort médiéval.', './assets/images/medieval.jpg', 'France', '2025-07-15', '2025-08-15', 'planifie'),
             ('Pyramide Perdue', 'Découverte d\'une pyramide inconnue en Amérique du Sud.', './assets/images/pyramide.jpg', 'Pérou', '2025-05-10', '2025-06-20', 'termine')
         ");
