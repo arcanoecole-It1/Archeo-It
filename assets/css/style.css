@@ -1,6 +1,7 @@
 body {
     background-color: #f8f9fa;
 }
+
 .welcome-section {
     position: relative;
     background-image: url('../images/archeo.jpg');
@@ -10,6 +11,7 @@ body {
     padding: 100px 0;
     margin-bottom: 50px;
 }
+
 .welcome-overlay {
     position: absolute;
     top: 0;
@@ -18,6 +20,7 @@ body {
     bottom: 0;
     background: rgba(0, 0, 0, 0.6);
 }
+
 .welcome-content {
     position: relative;
     z-index: 2;
@@ -27,26 +30,42 @@ body {
     margin: 0 auto;
     padding: 0 20px;
 }
+
 .welcome-content h1 {
     font-size: 3rem;
     margin-bottom: 20px;
     font-weight: bold;
 }
+
 .welcome-content p {
     font-size: 1.2rem;
     line-height: 1.8;
 }
+
 .main-container {
     max-width: 1600px;
     margin: 0 auto;
     padding: 0 20px;
 }
+
 .content-grid {
     display: grid;
     grid-template-columns: 2fr 1fr;
     gap: 30px;
     margin-bottom: 50px;
 }
+
+/* Section Actualités */
+.actualites-section {
+    margin-bottom: 30px;
+}
+
+.actualites-section h2 {
+    color: #333;
+    margin-bottom: 25px;
+    font-size: 1.8rem;
+}
+
 .actualite-card {
     background: white;
     padding: 20px;
@@ -56,19 +75,50 @@ body {
     border-left: 4px solid #2196f3;
     transition: transform 0.3s;
 }
+
 .actualite-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 5px 20px rgba(0,0,0,0.15);
 }
+
 .actualite-card h4 {
     color: #333;
     margin-bottom: 10px;
 }
+
+.actualite-card:last-child {
+    margin-bottom: 20px; /* Espace avant le bouton "Voir plus" */
+}
+
 .actualite-date {
     color: #666;
     font-size: 0.9rem;
     margin-bottom: 10px;
 }
+
+/* Boutons "Voir plus" et "Connectez-vous" */
+.actualites-section .btn-primary {
+    background: #2196f3;
+    color: white;
+    padding: 10px 25px;
+    border-radius: 30px;
+    border: none;
+    font-weight: 600;
+    transition: all 0.3s;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.actualites-section .btn-primary:hover {
+    background: #1976d2;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.actualites-section .text-center {
+    margin-top: 25px;
+}
+
+/* Section Agenda */
 .agenda-section {
     background: white;
     padding: 25px;
@@ -82,6 +132,7 @@ body {
     margin-bottom: 20px;
     font-size: 1.5rem;
 }
+
 .agenda-item {
     padding: 15px;
     margin-bottom: 15px;
@@ -89,6 +140,7 @@ body {
     border-radius: 8px;
     border-left: 3px solid #28a745;
 }
+
 .agenda-date-badge {
     background: #2196f3;
     color: white;
@@ -98,11 +150,14 @@ body {
     display: inline-block;
     margin-bottom: 5px;
 }
+
+/* Section Commentaires */
 .comment-section {
     background: #e9ecef;
     padding: 40px 0;
     margin: 50px 0;
 }
+
 .comment-form {
     background: white;
     padding: 30px;
@@ -111,6 +166,8 @@ body {
     max-width: 600px;
     margin: 0 auto;
 }
+
+/* Section CTA Contact */
 .cta-contact {
     background: linear-gradient(135deg, #2196f3, #1976d2);
     color: white;
@@ -118,9 +175,11 @@ body {
     text-align: center;
     margin-top: 50px;
 }
+
 .cta-contact h2 {
     margin-bottom: 20px;
 }
+
 .btn-contact {
     background: white;
     color: #2196f3;
@@ -131,17 +190,123 @@ body {
     transition: all 0.3s;
     display: inline-block;
 }
+
 .btn-contact:hover {
     transform: translateY(-3px);
     box-shadow: 0 5px 20px rgba(0,0,0,0.2);
     color: #1976d2;
 }
 
+/* Modal de connexion */
+.modal-content {
+    border-radius: 10px;
+    border: none;
+    overflow: hidden;
+}
+
+.modal-header {
+    background: #f8f9fa;
+    border-bottom: 1px solid #e9ecef;
+    padding: 15px 20px;
+}
+
+.modal-title {
+    color: #333;
+    font-weight: 600;
+}
+
+.modal-body {
+    padding: 25px;
+}
+
+.modal-footer {
+    background: #f8f9fa;
+    border-top: 1px solid #e9ecef;
+    padding: 15px 20px;
+}
+
+.modal-footer .btn-primary {
+    background: #2196f3;
+    border: none;
+    border-radius: 30px;
+    padding: 8px 20px;
+    transition: all 0.3s;
+}
+
+.modal-footer .btn-primary:hover {
+    background: #1976d2;
+    transform: translateY(-2px);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+.modal-footer .btn-outline-primary {
+    color: #2196f3;
+    border: 1px solid #2196f3;
+    border-radius: 30px;
+    padding: 8px 20px;
+    transition: all 0.3s;
+}
+
+.modal-footer .btn-outline-primary:hover {
+    background: #2196f3;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+/* Page des actualités complètes */
+.actualites-page .actualite-card {
+    margin-bottom: 25px;
+}
+
+.actualites-page .btn-secondary {
+    background: #6c757d;
+    color: white;
+    padding: 10px 25px;
+    border-radius: 30px;
+    border: none;
+    font-weight: 600;
+    transition: all 0.3s;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.actualites-page .btn-secondary:hover {
+    background: #5a6268;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* Responsive */
 @media (max-width: 768px) {
     .content-grid {
         grid-template-columns: 1fr;
     }    
     .welcome-content h1 {
         font-size: 2rem;
+    }
+    .actualite-card {
+        padding: 15px;
+    }
+    .agenda-section {
+        margin-top: 20px;
+    }
+}
+
+@media (max-width: 576px) {
+    .welcome-section {
+        padding: 70px 0;
+    }
+    .welcome-content h1 {
+        font-size: 1.8rem;
+    }
+    .main-container {
+        padding: 0 15px;
+    }
+    .actualite-card h4 {
+        font-size: 1.2rem;
+    }
+    .btn-primary, .btn-contact {
+        padding: 10px 20px;
+        font-size: 0.9rem;
     }
 }

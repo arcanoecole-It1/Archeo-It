@@ -46,14 +46,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit_comment'])) {
         </div>
     </section>
     <div class="main-container">
-        <div class="content-grid">
-            <div class="actualites-section">
-                <h2 class="mb-4"><i class="bi bi-newspaper me-2"></i>Actualités</h2>
+        <div class="actualites-section">
+            <h2 class="mb-4"><i class="bi bi-newspaper me-2"></i>Actualités</h2>
                 <?php
                 try {
-                    // Si connecté, afficher toutes les actualités, sinon seulement 3
-                    $limit = (isset($_SESSION['userIsLoggedIn']) && $_SESSION['userIsLoggedIn']) ? "" : " LIMIT 3";
-                    $stmt = $pdo->query("SELECT * FROM actualites ORDER BY date_creation DESC" . $limit);
+                    // Récupérer seulement les 3 dernières actualités pour la page d'accueil
+                    $stmt = $pdo->query("SELECT * FROM actualites ORDER BY date_creation DESC LIMIT 3");
                     $actualites = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     
                     if (!empty($actualites)) {
@@ -63,15 +61,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit_comment'])) {
                                 <h4><?= $actualite['titre'] ?></h4>
                                 <p class="actualite-date">
                                     <i class="bi bi-calendar3"></i> 
-                                    <?= date('d/m/Y', $actualite['date_creation']) ?>
+                                    <?= date('d/m/Y', strtotime($actualite['date_creation'])) ?>
                                 </p>
                                 <p><?= substr($actualite['description'], 0, 200) ?>...</p>
                             </div>
                             <?php
                         }
-                        
-                        // Si non connecté, afficher bouton pour voir plus
-                        if (!isset($_SESSION['userIsLoggedIn']) || !$_SESSION['userIsLoggedIn']) {
+                        // Afficher le bouton "Voir plus" uniquement pour les utilisateurs connectés
+                        if (isset($_SESSION['userIsLoggedIn']) && $_SESSION['userIsLoggedIn']) {
+                            ?>
+                            <div class="text-center mt-4">
+                                <a href="actualites.php" class="btn btn-primary">
+                                    <i class="bi bi-arrow-down-circle me-2"></i>Voir toutes les actualités
+                                </a>
+                            </div>
+                            <?php
+                        } else {
                             ?>
                             <div class="text-center mt-4">
                                 <button class="btn btn-primary" onclick="showLoginMessage()">
@@ -106,11 +111,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit_comment'])) {
                                 <span class="agenda-date-badge">
                                     <?= date('d/m/Y', strtotime($evenement['date_evenement'])) ?>
                                 </span>
-                                <h6 class="mt-2"><?= htmlspecialchars($evenement['titre']) ?></h6>
-                                <p class="mb-1 small"><?= htmlspecialchars($evenement['description']) ?></p>
+                                <h6 class="mt-2"><?= $evenement['titre'] ?></h6>
+                                <p class="mb-1 small"><?= $evenement['description'] ?></p>
                                 <?php if (!empty($evenement['lieu'])): ?>
                                     <p class="mb-0 text-muted small">
-                                        <i class="bi bi-geo-alt"></i> <?= htmlspecialchars($evenement['lieu']) ?>
+                                        <i class="bi bi-geo-alt"></i> <?= $evenement['lieu'] ?>
                                     </p>
                                 <?php endif; ?>
                             </div>
