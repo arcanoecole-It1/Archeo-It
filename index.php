@@ -92,7 +92,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit_comment'])) {
                 <h3><i class="bi bi-calendar-event me-2"></i>Agenda</h3>
                 <?php
                 if (isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == 1) {
-                    echo '<a href="create-evenement.php" class="btn btn-sm btn-success mb-3">
+                    echo '<a href="create-event.php" class="btn btn-sm btn-success mb-3">
                             <i class="bi bi-plus-circle me-1"></i>Ajouter
                           </a>';
                 }  
