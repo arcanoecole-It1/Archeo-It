@@ -60,12 +60,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit_comment'])) {
                         foreach ($actualites as $actualite) {
                             ?>
                             <div class="actualite-card">
-                                <h4><?= htmlspecialchars($actualite['titre']) ?></h4>
+                                <h4><?= $actualite['titre'] ?></h4>
                                 <p class="actualite-date">
                                     <i class="bi bi-calendar3"></i> 
                                     <?= date('d/m/Y', $actualite['date_creation']) ?>
                                 </p>
-                                <p><?= htmlspecialchars(substr($actualite['description'], 0, 200)) ?>...</p>
+                                <p><?= substr($actualite['description'], 0, 200) ?>...</p>
                             </div>
                             <?php
                         }

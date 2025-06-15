@@ -57,10 +57,6 @@ $actualites = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                     $fileExists = file_exists($imagePath); // Vérifie si le fichier existe à ce chemin
                                     ?>
                                     <img src="<?= $imagePath ?>" class="card-img-top" alt="<?= $actualite['titre'] ?>" style="height: 200px; object-fit: cover;">
-                                    <div class="debug-info text-center">
-                                        Chemin Stocké : <code><?= $imagePath ?></code><br>
-                                        Fichier Existe : <span style="color: <?= $fileExists ? 'green' : 'red' ?>;"><?= $fileExists ? 'Oui' : 'Non' ?></span>
-                                    </div>
                                 <?php else: ?>
                                     <div class="card-img-top bg-secondary d-flex align-items-center justify-content-center" style="height: 200px;">
                                         <span class="text-white fs-5">Pas d'image</span>
